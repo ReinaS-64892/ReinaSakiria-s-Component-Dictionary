@@ -1,0 +1,420 @@
+{
+    "Name": "Unity",
+    "SectionOrder":100,
+    "Description": [
+        "VRChat Avatar として実際に使用可能なコンポーネント",
+        "これらはほとんどが Unity の Native に実装されていて、私達はそれがどのように実装されているかを知ることはできない。",
+        "Unity に標準で組み込まれているため、VCC/ALCOM などからツールのインストールなどを行わなくても使用可能である。",
+        "by Reina_Sakiria"
+    ],
+    "DictionaryElements": [
+        {
+            "Name": "Animator",
+            "ComponentFullName": "UnityEngine.Animator, UnityEngine.AnimationModule",
+            "Description": [
+                "AnimationClip や AnimationContoroller と使用することで、パラメーターと時間ベースで状態を遷移させ、複雑なアニメーションが実現できる。",
+                "",
+                "VRChat においては アバターのルートに1つついていることが多い、 Animation という黒魔術の土台となるコンポーネント。",
+                "また、AnimationClip は通常アニメーションを文字列のパスで管理しているためこの Animator のいる位置というのが非常に重要になる。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "Constraint",
+            "Description": [
+                "特定のトランスフォームを基準に、つけたトランスフォームのいくつかの要素を動的に書き換え続けることができる。",
+                "",
+                "VRChat においては、ダイナミックに追従先を変えたり、特定の要素だけを追従させたりして、ギミックを構築する重要な1要素となる。",
+                "また、 VRChat 専用にはなるが VRC Constraint も存在するが、Unity の Constraint は MA などによってビルド時に変換ができるため、他プラットフォームへの互換性を重視するならばこちらを使用したほうが良い。",
+                "by Reina_Sakiria"
+            ],
+            "ChiledElements": [
+                {
+                    "Name": "PositionConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.PositionConstraint, UnityEngine",
+                    "Description": [
+                        "Position、つまり位置(座標)を追従したり、複数トランスフォームの中間の位置に追従させたりできる。",
+                        "",
+                        "基準となる要素の位置を基に、自身の座標だけを書き換え続ける。回転やスケールは変更されない様子。",
+                        "特定の軸だけを対象にすることが可能で、Y 軸にすれば高さ基準のような形にも可能になるようだ。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "RotationConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.RotationConstraint, UnityEngine",
+                    "Description": [
+                        "Rotation、これは回転。つまり、基準となる要素を基に回転を追従させたり逆回転させたりできる。",
+                        "",
+                        "規準となる要素の回転を基に、自身の回転だけを書き換え続け、回転以外の座標やスケールは変更されない様子。",
+                        "特定の軸だけを対象にすることも可能で、一部の軸だけを追従するちょっと特殊なこともできるもよう。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "ScaleConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.ScaleConstraint, UnityEngine",
+                    "Description": [
+                        "Scale、そのトランスフォームの大きさ。つまり、基準となる要素を基に大きさを追従させたりもできる。",
+                        "",
+                        "規準となる要素のスケールを基に、自身のスケールだけを書き換え続け、座標や回転は変更されない様子。",
+                        "特定の軸だけを対象にすることも可能で、大きさが変わると縦に伸びるオブジェクトが作れるかもしれない。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "ParentConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.ParentConstraint, UnityEngine",
+                    "Description": [
+                        "規準となる要素を基に、親子関係のように位置と回転を追従させたりできる。",
+                        "",
+                        "PositionConstraintとRotationConstraintを同時につけたものとは違う動きをする。",
+                        "違いは、単純な回転で座標も変わること。規準となる要素と離れれば離れるほど、その規準となる要素の回転で大きく座標も変わるようになる。",
+                        "Constraint で手の動きに追従させると言ったときはほとんどの場合これが使用されている。",
+                        "規準となる要素の回転や座標を基に、自身の回転や座標を書き換え続け、スケールだけは変更されない様子。",
+                        "それぞれが特定の軸だけを対象にすることも可能。これが何につかえるのか、Reina_Sakiria は知らない。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "AimConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.AimConstraint, UnityEngine",
+                    "Description": [
+                        "規準となる要素を基に、そのトランスフォームを規準となる要素に向けるようなことができるらしい。",
+                        "",
+                        "おそらく トランスフォームの回転のみを書き換える。",
+                        "Reina_Sakiria はこれを正しく扱えたことがないためよくわからない",
+                        "おそらく、試行錯誤を繰り返して正しく扱えるようになれば",
+                        "弓などの類で、PositionConstraintで左手の座標に追従させ、AimConstraintで右手の方に向くようにすれば、いい感じの弓が作れるかもしれない。",
+                        "また、槍などの長い棒状の物や両手持ち系の武器でも同様に使えるかもしれない。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "LookAtConstraint",
+                    "ComponentFullName": "UnityEngine.Animations.LookAtConstraint, UnityEngine",
+                    "Description": [
+                        "規準となる要素を基に、そのトランスフォームを規準となる要素に向けるようなことができるらしいが、AimConstraint とくらべて上方向などの部分が少し簡略されたものらしい。",
+                        "",
+                        "おそらく トランスフォームの回転のみを書き換える。",
+                        "Reina_Sakiria はこれも正しく扱えたことがないためよくわからない",
+                        "AimConstraint と違い、カメラなどの上方向が特定の方向に向いていてほしい用途のために使うものに見える。",
+                        "by Reina_Sakiria"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Renderer",
+            "ComponentFullName": "UnityEngine.Renderer,-UnityEngine",
+            "Description": [
+                "私達の視界に映る存在、画面に描画されるものは大体がこれらである。",
+                "",
+                "姿、アバターを人々に認識させるには見える必要があるため、VRChat において、アバターを構成するかなり重要な要素の一つ。",
+                "馴染みの深い物もあれば特殊な物もある。",
+                "また VRChat アバターにおいて殆どの GPU 負荷を発生させるのはこれらともなる。",
+                "by Reina_Sakiria"
+            ],
+            "ChiledElements": [
+                {
+                    "Name": "SkinnedMeshRenderer",
+                    "ComponentFullName": "UnityEngine.SkinnedMeshRenderer, UnityEngine",
+                    "Description": [
+                        "メッシュを頂点単位で動的に変形させながら描画し、視野に映る存在。",
+                        "",
+                        "VRChat のアバターにおいて、これが使用されていないアバターのほうが少ないだろう。人形であればほとんどの場合一つまたはそれ以上存在する。",
+                        "多くの場合、FBX といった外部ツールの形式や3Dモデル共有用の形式からインポートされることで使用可能。",
+                        "BlendShape という頂点座標などの線形な変更や、ボーンを用いたスキニングと呼ばれる親子関係のように頂点座標などを追従させたりすることが多い。",
+                        "ちなみに、このコンポーネントは内部的に ボーン となる トランスフォーム の配列を保有しています。",
+                        "しかし、そのボーンとなるトランスフォームの配列は、インスペクター上からは隠蔽されており Internal Debug Inspector かスクリプトなどから変更が可能です。",
+                        "たまに、一部分が世界の原点に引っ張られるときがありますが、それは、その内部的に存在するボーンとなるトランスフォームの配列が指している一部のトランスフォームが削除されてしまっている時です。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "MeshRenderer",
+                    "ComponentFullName": "UnityEngine.MeshRenderer, UnityEngine",
+                    "Description": [
+                        "固定のメッシュを一つのトランスフォームを規準に描画し、視野に映る。",
+                        "",
+                        "MeshFilter から提供されるメッシュを付与した GameObject のトランスフォームを基に、画面上に描画するようだ。",
+                        "トランスフォームで可能な、移動・回転・スケール が動的に変更可能。全体的な変形が主で部分的な変形は行えない。",
+                        "そのかわり SkinnedMeshRenderer よりも描画コストが軽い。",
+                        "VRChat のアバターにおいては、金属のような硬いもので作られたアクセサリや単純な武器などに使われることが多い。",
+                        "また VRChat のワールドでは変形をすることのほうが珍しいことも多いのでこっちが使われていることも多いかもしれない。",
+                        "by Reina_Sakiria"
+                    ],
+                    "ChiledElements": [
+                        {
+                            "Name": "MeshFilter",
+                            "ComponentFullName": "UnityEngine.MeshFilter, UnityEngine",
+                            "Description": [
+                                "MeshRenderer に Mesh を提供する存在。",
+                                "",
+                                "なぜ別れている ... ? MeshRenderer に直接 SkinnedMeshRenderer のように Mesh を持てばよかったのでは ... ?",
+                                "メッシュを取り扱うツール作者にとっては面倒なことを生む存在。",
+                                "by Reina_Sakiria"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "ParticleSystem",
+                    "ComponentFullName": "UnityEngine.ParticleSystem, UnityEngine",
+                    "Description": [
+                        "パーティクルと呼ばれる粒子のシュミレーションができる。また ParticleSystemRenderer によって粒子状に何かを描画し、映ることができる。",
+                        "",
+                        "厳密にはこれは Renderer ではない。Renderer なのはあくまで ParticleSystemRenderer であるが、ここでは Renderer の一つとして紹介する。",
+                        "重力の影響を受けたり、生存時に加速を与えたり、モジュールと呼ばれる区切りがあり、それぞれ有効化し調整すれば非常に様々な挙動をさせることが可能。",
+                        "また、ワールドやアバターに存在するコライダーに衝突することも有効化すれば可能で VRChat アバターにおいては若干だけど、ワールドに干渉できる可能性がある SendCollisionMessages というものも存在する。",
+                        "あくまで、描画をしているのは別のコンポーネントである ParticleSystemRenderer であり、インスペクター上に表示はされないが、スクリプトなどからアクセスするとその存在を確認することが可能になる。",
+                        "by Reina_Sakiria"
+                    ],
+                    "ChiledElements": [
+                        {
+                            "Name": "ParticleSystemRenderer",
+                            "ComponentFullName": "UnityEngine.ParticleSystemRenderer,-UnityEngine",
+                            "Description": [
+                                "ParticleSystem の粒子情報を基に、メッシュを動的に描画し映れる存在。",
+                                "",
+                                "ParticleSystem の粒子に対して、ビルボードと呼ばれる常に視点の方向を向く板を配置したりメッシュを配置したりして、その粒子を表現する。",
+                                "このビルボードにはその挙動にいくつかの種類もあったりするようだ。また、粒子に対してメッシュを割り当てれば、そこに 3Dモデル を表示することも可能で、太古の昔の VRChat にはこれを利用した黒魔術もあったらしいそうだ。",
+                                "他にも、その粒子の動きに応じてトレイルを描画したり、粒子同士をつなぐようにトレイルを描画することも可能。",
+                                "ちなみに、これのどれかの設定でVRChatのミラーに映るか否かが変わるらしい。",
+                                "by Reina_Sakiria"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "TrailRenderer",
+                    "ComponentFullName": "UnityEngine.TrailRenderer, UnityEngine",
+                    "Description": [
+                        "そのトランスフォームの移動を基にトレイルを生成、描画し、視野にトレイルを表示する存在。",
+                        "",
+                        "VRChat にてあまり使用されているところをみない気がします。Reina_Sakiria も扱えたことがない。",
+                        "パーティクルシステムでもっと細かい単位でトレイルを生成していることもあるため、トレイル表現だからといって、これであるとは言えない。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "LineRenderer",
+                    "ComponentFullName": "UnityEngine.LineRenderer, UnityEngine",
+                    "Description": [
+                        "保有する複数の座標情報を基にその座標を線で繋いだメッシュを生成、描画し、視野にラインを引くことができる。",
+                        "",
+                        "これも VRChat でまともに使用されていた例を見ない気がします ... 何ができるんでしょうか？",
+                        "なぜか VRChat で使用できますが、これは Unity 的にはスクリプトでラインを更新していい感じに線の情報を描画するためにあるものだと思われます。",
+                        "Trail は時間的に前の座標情報を 線 として表示するのに対して、LineRenderer は割り当てられた座標情報を 線 として表示するという違いのみで、その 線 の描画方法は TrailRenderer と差がない様子。",
+                        "by Reina_Sakiria"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Physics",
+            "Description": [
+                "物理的な挙動をしてるならば、これらが関わっていることが多い。",
+                "",
+                "VRChat Avatar においても、これらは使用可能で、うまく扱わないとかなりの じゃじゃ馬 だが扱えれば、物理的な挙動を表現することが可能になる。",
+                "by Reina_Sakiria"
+            ],
+            "ChiledElements": [
+                {
+                    "Name": "Rigidbody",
+                    "ComponentFullName": "UnityEngine.Rigidbody, UnityEngine",
+                    "Description": [
+                        "物理的な動作をすることができる。",
+                        "",
+                        "これがあると、重力を基に落下し、(自身にコライダーがあれば)地面に衝突することができる。",
+                        "が、トランスフォームとして(not 物理)の動きと同時に加わると、とても不思議な挙動をするため、Reina_Sakiria はアバター向けでこれをうまく扱えたことはあまりない。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "Collider",
+                    "Description": [
+                        "物理として、衝突するもの。",
+                        "",
+                        "Primitive と呼ばれる根源的な形状やメッシュの形状を基に衝突判定を作る物まで、いくつかの形状を表現するコンポーネント群が存在する。",
+                        "衝突判定というのは、パーティクルで表現される武器の弾を弾くためなどに使用されることもあるが ...",
+                        "VRChat においては、コライダージャンプと呼ばれる技術の核であり、それがコライダージャンプ以外にまともに使用されている例を見ることは少ないだろう。",
+                        "by Reina_Sakiria"
+                    ],
+                    "ChiledElements": [
+                        {
+                            "Name": "BoxCollider",
+                            "ComponentFullName": "UnityEngine.BoxCollider, UnityEngine",
+                            "Description": [
+                                "そのトランスフォームの位置に、箱の形状のコライダーとして衝突できる。",
+                                "",
+                                "こういった Primitive な形状は、MeshColliderよりも負荷が軽いため、複雑な形状をしたものに対して大まかなサイズを合わせた箱をコライダーとして使うことも多いだろう。",
+                                "箱とはいっても、回転させたり長方形になるように一部の軸だけスケールを大きくしたりもできる。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "SphereCollider",
+                            "ComponentFullName": "UnityEngine.SphereCollider, UnityEngine",
+                            "Description": [
+                                "そのトランスフォームの位置に、ボールのような球体のコライダーとして衝突できる。",
+                                "",
+                                "これも Primitive な形状の一つ、(計算負荷が軽いかどうかはしらないけど)衝突の計算がかなり簡単な形状でもある。",
+                                "球体の衝突判定を表現したいのであれば、これ以上にいい選択肢はないだろう。",
+                                "ただ、スケールを特定の軸だけ大きくしたときに、メッシュレンダラーで球体を表現したときとは違う形状になる。",
+                                "メッシュレンダラーで表現する球体は潰せるが、SphereColliderは潰せないのである。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "CapsuleCollider",
+                            "ComponentFullName": "UnityEngine.CapsuleCollider, UnityEngine",
+                            "Description": [
+                                "そのトランスフォームの位置に、カプセルと呼ばれる先端が球のようになっている棒の形状でコライダーとして衝突できる。",
+                                "",
+                                "これも Primitive な形状で、VRChat のプレイヤーの選択の判定はこの形状をしている。",
+                                "円柱のような棒に合わせて配置するとうまく機能してくれるだろう。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "MeshCollider",
+                            "ComponentFullName": "UnityEngine.MeshCollider, UnityEngine",
+                            "Description": [
+                                "そのトランスフォームの位置に、MeshRenderer のような、メッシュの形状でコライダーとして衝突できる。",
+                                "",
+                                "これは Primitive ではなく、複雑だったり任意の形状を表現可能になるが、その分だけ計算不可が大きい。",
+                                "多くの場合は、これを使用せず Primitive なコライダーを代用したほうが良いことも。",
+                                "物理の計算というのは負荷が大きいため、とてもポリゴン数の多いメッシュをコライダーとして使用するだけで、いとも簡単に FPS を著しく低下させることも可能。",
+                                "本当に必要なときは、適切に取り扱いましょう。",
+                                "VRChat Avatar 用途で、必要になることがあるのか ... 私は知りません。",
+                                "by Reina_Sakiria"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Joints",
+                    "Description": [
+                        "物理的な動作をするもの同士を繋いだりして特殊な物理を表現できる。",
+                        "",
+                        "Reina_Sakiria はこれについてあまり詳しくない。なので一部しかまともに解説できないが ...",
+                        "これは複数の Rigidbody を持った存在同士を相互に連携させ、くっつけたり、ヒンジのような表現を行ったりできるようになるようだ。",
+                        "by Reina_Sakiria"
+                    ],
+                    "ChiledElements": [
+                        {
+                            "Name": "FixedJoint",
+                            "ComponentFullName": "UnityEngine.FixedJoint, UnityEngine",
+                            "Description": [
+                                "物理的な動作をするもの同士をくっつけることができる。",
+                                "",
+                                "Reina_Sakiria は過去にこれを特殊なものを手にくっつけるために使ってたこともあるが、そんなのは Constraint でよい。",
+                                "設定上は、そのくっつきを破壊するようなこともできるように見えるが、それがどのように動作するのか Reina_Sakiria はしらない",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "HingeJoint",
+                            "ComponentFullName": "UnityEngine.HingeJoint, UnityEngine",
+                            "Description": [
+                                "ヒンジ的な挙動が可能らしい。",
+                                "",
+                                "Reina_Sakiria はこれについて何も知らないため、何も書かないでおきます。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "SpringJoint",
+                            "ComponentFullName": "UnityEngine.SpringJoint, UnityEngine",
+                            "Description": [
+                                "物理的な動作をするもの同士をバネで繋いだような挙動をさせることができる。",
+                                "",
+                                "特定のオブジェクトに対してゆったりと追従するような動作や本当にバネのような動作を表現したりできる、が VRChat Avatar 用途では PhysBone でいいこともしばしばある。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "CharacterJoint",
+                            "ComponentFullName": "UnityEngine.CharacterJoint, UnityEngine",
+                            "Description": [
+                                "なにこれ？",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "ConfigurableJoint",
+                            "ComponentFullName": "UnityEngine.ConfigurableJoint, UnityEngine",
+                            "Description": [
+                                "なにこれ ... ？",
+                                "by Reina_Sakiria"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Cloth",
+                    "ComponentFullName": "UnityEngine.Cloth, UnityEngine",
+                    "Description": [
+                        "頂点単位の高品質な布表現が可能なコンポーネント。",
+                        "",
+                        "これほど扱いが難しく、危険なコンポーネントは他にあるだろうか ... ? けれど、その扱いの難しさと引き換えに、VRChat で使用可能な他のコンポーネントでは絶対に実現できない布表現が可能になる。",
+                        "一部の設定は PC に対する負荷を非常に大きく爆発的に増加させてしまうため、それら設定はもっと詳しい解説記事などを参考にし、あまり手を触れないほうが良い。",
+                        "というかこのコンポーネントは一般に BOOTH で配布・販売されている状態からあまり手を付けないほうがいい。事故る",
+                        "これをうまく取り扱うためには、Blender との反復横飛びは避けられないでしょうし、扱うならば、衣装をゼロから作る覚悟が必要となるだろう。",
+                        "覚悟と度胸と技量を持ちうると思うならば、有識者の記事を読み漁り、パフォーマンスチューニングや VRChat 上での制御をしらべ、学習と努力し続けると良いかもしれない。",
+                        "そんな覚悟や、度胸、技量、いずれかが無いと思うならば、PhysBone を使っておいたほうが事故らなくていいし安定するだろう。",
+                        "なお Reina_Sakiria はこのコンポーネントの有識者ではない。",
+                        "by Reina_Sakiria"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "AudioSource",
+            "ComponentFullName": "UnityEngine.AudioSource, UnityEngine",
+            "Description": [
+                "音を発する存在。",
+                "",
+                "VRChat 上では、その音量にリミッターがかけられているらしいし、アバターとしては同時に 3つ ぐらいしか鳴らせないらしい。",
+                "mp3 や wav ファイルなどを Project にインポートし、それをこのコンポーネントに割り当てる、ほかいくつかの設定を行うことで音がなる。",
+                "付与した GameObject の トランスフォームの位置を規準に音がなるそうだ。",
+                "VRChat 向けでは VRC SpatialAudioSource というのを同時に付与すると良い。",
+                "付与しなかった時、VRC SpatialAudioSource のデフォルト設定が使用され意図しない状態になりうるからだそう。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "Light",
+            "ComponentFullName": "UnityEngine.Light, UnityEngine",
+            "Description": [
+                "それは、光である。",
+                "",
+                "VRChat Avatar 用途では、リアルタイムライト とよばれる、あなたの視界を描画するときに光が計算されるライトとなることでしょう。",
+                "これは、使えば使うほど、描画負荷を増大させていく。いとも容易く描画負荷を大きくできるため、特に Avatar 用途では可能な限り使うべきではない。",
+                "また、ワールドのライティングを著しく破壊できてしまいます。",
+                "あまり優れたPC環境ではない人の FPS を容易に著しく低下させるにたりうる存在です、使うにしても節度を持ちましょう。",
+                "このコンポーネントも、最低限軽量に扱う術などがよくわからないならば触れないほうが良いです。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "Camera",
+            "ComponentFullName": "UnityEngine.Camera, UnityEngine",
+            "Description": [
+                "世界を映す者",
+                "",
+                "VRChat Avatar 用途で、セーフティによってフレンドであるか明示的な操作をされないと無効化されることも多いが、使用できる。",
+                "しかしこれを使用すれば、人々の描画負荷を CPU GPU 共に著しく増加できる、複数視点を描画しているにとても近しいため。",
+                "これらを目に仕込み、目に対して映り込みのような表現をすることが可能になるが、すなわちそれは、そのアバターが存在するだけで描画負荷が倍以上に増えることを意味する。",
+                "それは ... 「歩くミラー」 と言ってもいいでしょう。",
+                "前述したように VRChat ではセーフティによってそもそも無効化されてしまうことも多いが、それほど負荷の面では非常に危険なコンポーネントであるということです。",
+                "ちなみに、ミラーも内部的には2つのカメラを使用しています(VRの場合)、カメラを使うということはミラーの半分、または同等かそれ以上の負荷を発生させうる存在であるということをよく考えてから使いましょう。",
+                "あまり優れたPC環境ではない人の FPS を容易に著しく低下させ、特によく併用される RenderTexture は VRAM を多く占有します。",
+                "このコンポーネントも、どうすれば軽量に扱えるかがよくわからないならば触れないほうが良いです。",
+                "ちなみに、使用者のローカルでしか動作しない VirtualLens2 などは、使用者以外には(カメラとして機能しないために)負荷が増えないので、そういったものは別枠で考える必要があります。",
+                "by Reina_Sakiria"
+            ]
+        }
+    ]
+}

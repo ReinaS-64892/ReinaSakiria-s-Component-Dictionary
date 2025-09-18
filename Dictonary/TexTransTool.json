@@ -1,0 +1,64 @@
+{
+    "Name": "TexTransTool",
+    "PackageID": "net.rs64.tex-trans-tool",
+    "HomePageURL": "https://ttt.rs64.net/",
+    "SourceCodeURL": "https://github.com/ReinaS-64892/TexTransTool",
+    "Description": [
+        "テクスチャ改変に MA のような非破壊とモジュール化の思想を持ち込み、非破壊的かつモジュール的にテクスチャへの改変を行うことを目的としたツール。",
+        "手軽とは程遠いが、扱えるようになればなるほど素早く強力な改変が行えるようになる。",
+        "上級者向けではあるが Reina_Sakiria にとってはテクスチャ改変において最強のツール。",
+        "by Reina_Sakiria"
+    ],
+    "SectionOrder": 2,
+    "DictionaryElements": [
+        {
+            "Name": "AtlasTexture",
+            "TutorialURL": "https://ttt.rs64.net/docs/Tutorial/ReductionTextureMemoryByAtlasing",
+            "ReferenceURL": "https://ttt.rs64.net/docs/Reference/AtlasTexture",
+            "ComponentGUID": "aae1d1b9de0f6d54f94e6d13f5b17274",
+            "CreateGameObject": true,
+            "Description": [
+                "テクスチャ(マテリアル)を指定すれば、それらテクスチャをアトラス化することができる。",
+                "",
+                "アバターのビルド時に、テクスチャの使用されている領域のみを集めた一つのテクスチャを TTT に生成させることを要求するコンポーネント。",
+                "VRAM の削減のためだけ、他細かいことを気にしないならば初期設定のまま扱えばよいが ... ",
+                "マテリアルスロットの削減やそれを見た目を維持しながら行いたいときには、非常に高度かつ lilToon などのシェーダーに対する知識も要求する。",
+                "強い力には、それ相応に使用者の力が要求されるように、使いこなすにはそれ相応の知識が必要なコンポーネント。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "SimpleDecal",
+            "TutorialURL": "https://ttt.rs64.net/docs/Tutorial/SetupSimpleDecal",
+            "ReferenceURL": "https://ttt.rs64.net/docs/Reference/SimpleDecal",
+            "ComponentGUID": "a1fe9512200d12a42ac84c26758a7a36",
+            "CreateGameObject": true,
+            "Description": [
+                "アバターのメッシュに対して直感的に (柄や模様といった) Decal を貼り付けることができる。",
+                "",
+                "3D モデルの情報を基に、そのメッシュに対して平行に貼り付けられた可能ように見えるテクスチャを対象となるテクスチャに対してビルド時に重ねることを要求するコンポーネント。",
+                "メインテクスチャーに対して追加する程度であれば TTT 内でも簡単に扱える部類のコンポーネント",
+                "また TTT の豊富な合成モードを使用することが可能で、単色と IslandSelector を用いることで部分的な色変えにも使うことは出来はする。",
+                "けれど、部分的な色改変としてはグラデーション的に色を変えれる SingleGradiationDecal のほうが優れていて、柄や模様などを入れたい場合にこちらは使用したほうが良い。",
+                "また、解像度は貼り付け先のテクスチャ解像度に依存するが、それと引き換えに テクスチャーメモリ が一切増加しない。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "SingleGradationDecal",
+            "TutorialURL": "https://ttt.rs64.net/docs/Tutorial/SetupGradationToHair",
+            "ReferenceURL": "https://ttt.rs64.net/docs/Reference/SingleGradationDecal",
+            "ComponentGUID": "b399477d38fcd3e4db79d5052517d489",
+            "CreateGameObject": true,
+            "Description": [
+                "グラデーションを髪の毛などに直感的につけることができる。",
+                "",
+                "3D モデルの情報を基に 1軸 の 3D 空間内での座標(方向)を基準にグラデーションの色に染めたテクスチャをビルド時に重ねることを要求するコンポーネント。",
+                "TTT の持つ数多くの合成モードを使えば、自由度高く髪の毛の色を変えることができるかもしれない。",
+                "髪の毛の先端に全体的に メッシュ を追加するのもできるが、 IslandSelector を用いればさらに詳細に メッシュを追加する領域をマスクすることができる。",
+                "TTT では珍しく、自由度を削り、手軽に扱えるように設計されたコンポーネント。",
+                "by Reina_Sakiria"
+            ]
+        }
+    ]
+}

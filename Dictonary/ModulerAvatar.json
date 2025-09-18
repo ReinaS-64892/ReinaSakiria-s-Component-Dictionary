@@ -1,0 +1,193 @@
+{
+    "Name": "Modular Avatar",
+    "PackageID": "nadena.dev.modular-avatar",
+    "HomePageURL": "https://modular-avatar.nadena.dev/",
+    "SourceCodeURL": "https://github.com/bdunderscore/modular-avatar",
+    "Description": [
+        "VRChatのAvatar改変に「非破壊」と「モジュール化」の概念を持ち込んだ革命的なツール。",
+        "",
+        "このツールがなければ、数多くの非破壊ツールも生まれていないし、非破壊ツールのための共通フレームワークである NDMF も存在しないだろう。",
+        "ギミックをモジュール化し簡単に導入、取り外しを可能にすること、これまで破壊的にしか導入できなかった衣装を非破壊で導入を可能に可能にすることなどができる。",
+        "ほかにも、衣装側に取り付けたコンポーネントでアバターの素体を干渉しないように消したり、シンプルに手早くトグルを作成したりすることもできる。",
+        "by Reina_Sakiria"
+    ],
+    "SectionOrder": 0,
+    "DictionaryElements": [
+        {
+            "Name": "MergeAramture",
+            "TutorialURL": "https://modular-avatar.nadena.dev/docs/tutorials/clothing",
+            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/merge-armature",
+            "ComponentGUID": "2df373bf91cf30b4bbd495e11cb1a2ec",
+            "Description": [
+                "同じ名前のボーンたちを持つアーマチュア同士を、結合することができる。",
+                "",
+                "付与されたGameObjectの持つ子たちのGameObjectを、指定した対象となるGameObjectの持つ子たちがそれぞれ同じ名前だった場合、その同じ名前のGameObjectを子にし、さらにその子に同じ名前のGameObjectがどちらにも存在したらそれも繰り返し移動させることをビルド時に要求するコンポーネント。",
+                "なお、実際にはそんなに単純な動作ではない様子、この解説はイメージだと思ってください。",
+                "ですが、結合(のように見える動作)が行われるか否かは名前が規準となっているようです。",
+                "コンポーネントのインスペクター上で、非対応衣装に着せやすくするための機能や、共通素体のスケール違いを一派で解決する機能もある。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "BoneProxy",
+            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/bone-proxy",
+            "ComponentGUID": "42581d8044b64899834d3d515ab3a144",
+            "Description": [
+                "付与された GameObject が指定したボーンの子になることができる、また、それは、ギミック内ではアバターのボーン代わりにもなれる。",
+                "",
+                "付与された GameObject が指定した GameObject の子にすることをビルド時に要求するコンポーネント。",
+                "Bone と名前についてるが、べつに Bone として扱われている GameObject でなくても対象にすることができる。",
+                "衣装のような複雑かつたくさんの親子関係の移動をしない場合、1つ2つで済む場合はこれを使うと良い。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "MergeAnimator",
+            "TutorialURL": "https://modular-avatar.nadena.dev/docs/tutorials/object_toggle_manual",
+            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/merge-animator",
+            "ComponentGUID": "1bb122659f724ebf85fe095ac02dc339",
+            "Description": [
+                "AnimationController をいい感じに結合できる。",
+                "",
+                "指定したアニメーションコントローラーを、相対・絶対の指定に応じて AnimationClip のパスを修正しながら FX レイヤーなどのVRChatで使用されるアニメーションコントローラーに結合するようビルド時に要求するコンポーネント。",
+                "同時に、 WriteDefaults を調整したり、アニメータへの追加の代わりに置き換えと言った機能も有する。",
+                "多くの場合に パスモード 相対 を使用し、同時に Animator を同じ GameObject に付与し、アニメーションクリップを作成・編集していくのが大方のギミックの作り方となるだろう。",
+                "また、FX 以外のアニメーションコントローラに結合しに行くことも可能。エモートやロコモーションを変えるときはここの設定を変更することが多いでしょう。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "ReactiveComponents",
+            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction",
+            "Description": [
+                "Reina_Sakiria はこれを「連鎖的に反応するコンポーネント群」だと思っている。",
+                "",
+                "GameObject の 有効・無効 に反応し、その ReactiveComponent の指定した状態に変更するような挙動をします。",
+                "また、その 有効・無効 は MenuIte を変わりに使用することでも作用できます。",
+                "それが有効な間は対象の状態がそれが指定した物になるように動作する。とてもシンプルなルール。",
+                "by Reina_Sakiria"
+            ],
+            "ChiledElements": [
+                {
+                    "Name": "ObjectToggle",
+                    "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/object-toggle",
+                    "ComponentGUID": "a162bb8ec7e24a5abcf457887f1df3fa",
+                    "Description": [
+                        "有効な時、指定した GameObject の有効無効を指定した状態に変えることができる。",
+                        "",
+                        "コンポーネントの Reactive の条件によって有効になったときに、指定した GameObject の指定した有効無効の状態に変えるように動作する Animation などを生成することを要求するコンポーネントのようだ。",
+                        "ビルド時にどのようなことが行われるかはおいておいて、これは GameObject の有効無効の制御ができる ReactiveComponent 、つまりそれは、ほかの ReactiveComponent のついた GameObject を対象とすれば、その ReactiveComponent に連鎖的に状態を変えることができる。",
+                        "当然、レンダラーのついた GameObject を対象にすれば、レンダラーの表示非表示を行うこともできる。",
+                        "これは、有効な場合にこのこのレンダラーを無効化できるということ。それはつまり、服に付与して下着を無効化するように設定すれば、着てないときにはそのままで、着た時には下着を無効化し、描画不可を抑えることができるようになるということ。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "ShapeChanger",
+                    "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/shape-changer",
+                    "ComponentGUID": "2db441f589c3407bb6fb5f02ff8ab541",
+                    "Description": [
+                        "有効な時、指定したBlendShapeに値を割り当てたり、一部分を削除したりすることができる。",
+                        "",
+                        "このコンポーネントの Reactive 条件が有効になった時、指定した BlendShape の値を割り当てたり、BlendShape の動く頂点を規準にメッシュを(完全に)削除する(または削除されたかのようにみえる)動作を実現することをビルド時に構築することを要求するコンポーネントのよう。",
+                        "どういうふうにそれが実現されるかはおいておいて、Reactibe 条件が有効なときに、指定した BlendShapeの値を変えたり削除したりできることは ...",
+                        "それはつまり、上着をつけている時に内側に着ている服を少しへこませて貫通を抑制したり、手袋やソックスのような類で素体側を消したりすることができて、非常に強力です。",
+                        "また 当然 Reactive にできるので太ももに食い込むようなアクセサリにつければ、表示しているときにだけ素体側の食い込み BlendShape を 100 にするようなことができます。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "MaterialSetter",
+                    "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/shape-setter",
+                    "ComponentGUID": "0adf335711644e34b6c635e94ae61fa7",
+                    "Description": [
+                        "それが有効ならば、指定したレンダラーのスロットに対して、指定したマテリアルを割り当てることができる。",
+                        "",
+                        "このコンポーネントの Reactive 条件が有効になった時、指定したレンダラーの指定したマテリアルスロットに対して割り当てるアニメーションを動作するようなアニメーションをビルド時に構築することを要求するコンポーネントらしい。",
+                        "それはさておき、マテリアルをそれの Reactive が有効なときに割り当てるように動作するので、一部分のマテリアルを置き換えて見た目を変えたいときに便利。",
+                        "全体的なマテリアルの置き換えには MaterialSwap を使用したほうが良いため、そちらと場合によって使わけると良いだろう。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "MaterialSwap",
+                    "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/material-swap",
+                    "ComponentGUID": "b259b73280ead4e4fbbdafc5e29175d1",
+                    "Description": [
+                        "それが有効ならば、指定しマテリアルを指定したマテリアルに入れ替えることができる",
+                        "",
+                        "有効条件になった時、指定した範囲の指定したマテリアルを指定したマテリアルと、一括ですべてのマテリアルスロットに対して割り当てるように動作するアニメーションをビルド時に構築すよう要求するコンポーネントかも。",
+                        "衣装とか髪型とか、マテリアルを複数持っているアセットのマテリアルを、一括で差し替えたいときに便利、MenuItem などと合わせれえば簡単に色変えトグルもできることでしょう。",
+                        "一部のマテリアルスロットのみを対象としたいのならば、MaterialSetter を使いましょう。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "MeshCutter",
+                    "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter",
+                    "ComponentGUID": "762726b8618cac7419e39bdc2b572b3d",
+                    "Description": [
+                        "それが有効ならば、 VertexFilter に基づきメッシュを削除できる。",
+                        "",
+                        "有効条件時、VertexFilter に基づきメッシュを削除し(てるよう見える)(、または完全に削除する)、メッシュとアニメーションなどをいい感じに操作し、それを実現するよう要求するコンポーネントのよう。",
+                        "ShapeChanger の Delete の強化版だと Reina_Sakiria は認識している。そしてこのコンポーネントの削除に対する自由度は VertexFilter が握っているようだ。",
+                        "BlendShape 規準の VertexFilter 当然あるようだが、他にもいくつかの種類がある。",
+                        "また、これが重要だと思いますが、この VertexFilter は複数個同時につければ重なった部分のみを削除したり、いずれかの VertexFilter が指定した部分を破壊することもできる。",
+                        "AND と OR が使えるといえば、わかる人には伝わるかもしれない。",
+                        "by Reina_Sakiria"
+                    ],
+                    "ChiledElements": [
+                        {
+                            "Name": "VertexFilter-ByAxis",
+                            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter/by-axis",
+                            "ComponentGUID": "660848d04d7443b5b6fcfb627e6be5ea",
+                            "Description": [
+                                "特定の位置と特定の方向から見た時、それが方向と同じ方にあるか反対の方にあるかで頂点をフィルタリングできる。",
+                                "",
+                                "正直これは、テキストで表現されたものを見るよりも、実際に動かしたほうが早い。",
+                                "数学(ベクトル)がわかる人には、指定した位置の空間に動かした後に、方向ベクトルとの dot 積が + になるか - になるか、といえばいいでしょう。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "VertexFilter-ByBone",
+                            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter/by-bone",
+                            "ComponentGUID": "f8e2c9a1b3d44c6d9a7e5f2c1b8d3e4f",
+                            "Description": [
+                                "ボーンを一つ指定し、ボーンによって影響を受ける頂点をフィルタリングできる。",
+                                "",
+                                "なお、当然ボーンという概念がない MeshRenderer などを対象としているときは使用できないそう。",
+                                "SkinnedMeshRenderer が削除の対象のときに使用してみよう。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "VertexFilter-ByMask",
+                            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter/by-mask",
+                            "ComponentGUID": "96a7b00b1dae4a02b61b29bf02241063",
+                            "Description": [
+                                "マスクテクスチャに基づき頂点をフィルタリングできる。",
+                                "",
+                                "既存のマスク用テクスチャを使用できる他、 nekobako氏作成した MaskTextureEditor がインストールされている場合に、それを使用してマスクを作成することも可能。",
+                                "ちなみのこの nekobako/MaskTextureEditor は元々 AAO: Avatar Optimizer の RemoveMeshByMask に付属していたものだが、後に別パッケージに切り離された物のようだ。(参考:anatawa12/AvatarOptimizer/pull/1470)",
+                                "Reina_Sakiria の予測なんだけど、たまにある UV を持たないメッシュでは機能しないと思われる。",
+                                "by Reina_Sakiria"
+                            ]
+                        },
+                        {
+                            "Name": "VertexFilter-ByBlendShape",
+                            "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter/by-shape",
+                            "ComponentGUID": "da7788c69fae9ff4abae088a0dc92c5b",
+                            "Description": [
+                                "BlendShapeの動作する頂点を閾値を基にフィルタリングすることができる。",
+                                "",
+                                "閾値はメートル単位なのだろうか ... ? よくわからないけど、その閾値よりも大きい距離 BlendShape によって移動するようになっていたらフィルタリングされるもよう。",
+                                "by Reina_Sakiria"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
