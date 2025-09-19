@@ -1,0 +1,33 @@
+{
+    "Name": "AAO: Avatar Optimizer",
+    "PackageID": "com.anatawa12.avatar-optimizer",
+    "HomePageURL": "https://vpm.anatawa12.com/avatar-optimizer/",
+    "SourceCodeURL": "https://github.com/anatawa12/AvatarOptimizer",
+    "Description": [
+        "非常に面倒な最適化・軽量化を非破壊かつUnity上で非常に手軽に行えるようにした、とても革命的で優秀なツール。",
+        "",
+        "NDMF圏のツールでは MA の次に産まれた、MA の次に使われている(とReina_Sakiriaは思ってる)ツール。",
+        "とりあえず TraceAndOptimize をつけてください。",
+        "それをつけるだけで、不必要な無駄や可能な限りの最適化がほぼ全て行われます。これほど強力かつ安全で簡単な最適化は他にないでしょう。",
+        "大事なことなのでもう一度書きます、 TraceAndOptimize をつけてください。",
+        "by Reina_Sakiria"
+    ],
+    "SectionOrder": 1,
+    "DictionaryElements": [
+        {
+            "Name": "TraceAndOptimize",
+            "TutorialURL": "https://vpm.anatawa12.com/avatar-optimizer/en/docs/tutorial/basic-usage/#trace-and-optimize",
+            "ReferenceURL": "https://vpm.anatawa12.com/avatar-optimizer/en/docs/reference/trace-and-optimize/",
+            "ComponentGUID": "8ad67726f6714ccbbb27913837ce7b15",
+            "Description": [
+                "見た目に影響がない範囲で、可能な限りの最適化をほぼすべて自動で行ってくれる。",
+                "",
+                "とりあえずすべてのアバターにこれをつけましょう。",
+                "",
+                "これをつける前と後とで見た目が変わるなら、それはすべてバグです。コンポーネントの設定をいじったりコンポーネントは消す前にバグ報告をしましょう。",
+                "一時的な回避策を模索することを止めはしませんが、報告しましょう。",
+                "by Reina_Sakiria"
+            ]
+        }
+    ]
+}
