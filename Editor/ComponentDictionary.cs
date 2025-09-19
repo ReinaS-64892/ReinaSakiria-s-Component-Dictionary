@@ -7,11 +7,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace net.rs64.ReinaSakiriaSComponentDictonary
+namespace net.rs64.ReinaSakiriaSComponentDictionary
 {
     internal class ComponentDictionary : EditorWindow
     {
-        [MenuItem("Tools/ReinaSakiria's ComponentDictonary")]
+        [MenuItem("Tools/ReinaSakiria's ComponentDictionary")]
         public static void ShowWindow()
         {
             GetWindow<ComponentDictionary>();
@@ -20,7 +20,7 @@ namespace net.rs64.ReinaSakiriaSComponentDictonary
         const string ComponentDictionaryDirectoryGUID = "903207793af379640b1348f07996cd1c";
         void CreateGUI()
         {
-            titleContent = new GUIContent("ReinaSakiria's ComponentDictonary");
+            titleContent = new GUIContent("ReinaSakiria's ComponentDictionary");
 
             var scroll = new ScrollView();
             scroll.viewDataKey = "CD-RootScroll";

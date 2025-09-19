@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 
-namespace net.rs64.ReinaSakiriaSComponentDictonary
+namespace net.rs64.ReinaSakiriaSComponentDictionary
 {
     [Serializable]
     internal class ComponentDictionarySection

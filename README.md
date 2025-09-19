@@ -1,4 +1,4 @@
-# ReinaSakiria's ComponentDictonary
+# ReinaSakiria's ComponentDictionary
 
 Reina_Sakiria の適当な規準でピックされたコンポーネントに適当な説明が書かれた辞書。
 
@@ -6,7 +6,7 @@ Issue、PR、マサカリ などはお待ちしております。
 
 ## なぜこれを作った？
 
-Reina_Sakiria はとある都合 により 通常の Addcomponent の部分が非常に使いづらく(大体 UnityEditor が X11 で動くのが悪い)、VRChat Avatar 向けのコンポーネントを一覧で見れて、コンポーネントを追加できる場所が欲しかったから。
+Reina_Sakiria はとある都合 により 通常の AddComponent の部分が非常に使いづらく(大体 UnityEditor が X11 で動くのが悪い)、VRChat Avatar 向けのコンポーネントを一覧で見れて、コンポーネントを追加できる場所が欲しかったから。
 
 辞書になったのはついで。
 
@@ -20,4 +20,4 @@ Reina_Sakiria は当然のことですがすべてのツールの開発者では
 
 ## 技術的な話
 
-Dictonary に Json を記述し、それを UIElements に変換することで この辞書は描画されます。
+Dictionary に Json を記述し、それを UIElements に変換することで この辞書は描画されます。
