@@ -1,0 +1,14 @@
+{
+    "Name": "この辞書",
+    "SourceCodeURL": "https://github.com/ReinaS-64892/ReinaSakiria-s-Component-Dictonary",
+    "Description": [
+        "Reina_Sakiria の都合とついでをかけ合わせて生まれることとなった辞書。",
+        "",
+        "Reina_Sakiria の適当な規準でピックされたコンポーネントに適当な説明が書かれ、コンポーネントの追加機能がある辞書(Reina_Sakiria 的にはこの機能が一番の目的)。",
+        "Reina_Sakiria の偏見ベースで辞書が書かれていますが、異議 や Issue , PR , マサカリ はお持ちしております。",
+        "気が向いたら、ここの下にここらへんで頻出する用語解説でも追加されてるかもしれませんね。",
+        "by Reina_Sakiria"
+    ],
+    "SectionOrder": -1,
+    "DictionaryElements": []
+}
