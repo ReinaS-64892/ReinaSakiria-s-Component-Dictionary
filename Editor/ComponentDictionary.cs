@@ -176,10 +176,10 @@ namespace net.rs64.ReinaSakiriaSComponentDictonary
             foldoutContainer.hierarchy.Add(note);
 
             if (e is MoreNestComponentDictionaryElement mne)
-                foreach (var ce in mne.ChiledElements)
+                foreach (var ce in mne.ChildElements)
                     GenereateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
             else if (e is NestComponentDictionaryElement ne)
-                foreach (var ce in ne.ChiledElements)
+                foreach (var ce in ne.ChildElements)
                     GenereateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
         }
 

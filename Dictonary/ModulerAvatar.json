@@ -14,7 +14,7 @@
     "SectionOrder": 0,
     "DictionaryElements": [
         {
-            "Name": "MergeAramture",
+            "Name": "MergeArmature",
             "TutorialURL": "https://modular-avatar.nadena.dev/docs/tutorials/clothing",
             "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/merge-armature",
             "ComponentGUID": "2df373bf91cf30b4bbd495e11cb1a2ec",
@@ -67,7 +67,7 @@
                 "それが有効な間は対象の状態がそれが指定した物になるように動作する。とてもシンプルなルール。",
                 "by Reina_Sakiria"
             ],
-            "ChiledElements": [
+            "ChildElements": [
                 {
                     "Name": "ObjectToggle",
                     "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/object-toggle",
@@ -90,7 +90,7 @@
                         "有効な時、指定したBlendShapeに値を割り当てたり、一部分を削除したりすることができる。",
                         "",
                         "このコンポーネントの Reactive 条件が有効になった時、指定した BlendShape の値を割り当てたり、BlendShape の動く頂点を規準にメッシュを(完全に)削除する(または削除されたかのようにみえる)動作を実現することをビルド時に構築することを要求するコンポーネントのよう。",
-                        "どういうふうにそれが実現されるかはおいておいて、Reactibe 条件が有効なときに、指定した BlendShapeの値を変えたり削除したりできることは ...",
+                        "どういうふうにそれが実現されるかはおいておいて、Reactive 条件が有効なときに、指定した BlendShapeの値を変えたり削除したりできることは ...",
                         "それはつまり、上着をつけている時に内側に着ている服を少しへこませて貫通を抑制したり、手袋やソックスのような類で素体側を消したりすることができて、非常に強力です。",
                         "また 当然 Reactive にできるので太ももに食い込むようなアクセサリにつければ、表示しているときにだけ素体側の食い込み BlendShape を 100 にするようなことができます。",
                         "by Reina_Sakiria"
@@ -136,7 +136,7 @@
                         "AND と OR が使えるといえば、わかる人には伝わるかもしれない。",
                         "by Reina_Sakiria"
                     ],
-                    "ChiledElements": [
+                    "ChildElements": [
                         {
                             "Name": "VertexFilter-ByAxis",
                             "ReferenceURL": "https://modular-avatar.nadena.dev/docs/reference/reaction/mesh-cutter/by-axis",

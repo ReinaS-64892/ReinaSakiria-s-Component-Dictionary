@@ -28,7 +28,7 @@
                 "また、 VRChat 専用にはなるが VRC Constraint も存在するが、Unity の Constraint は MA などによってビルド時に変換ができるため、他プラットフォームへの互換性を重視するならばこちらを使用したほうが良い。",
                 "by Reina_Sakiria"
             ],
-            "ChiledElements": [
+            "ChildElements": [
                 {
                     "Name": "PositionConstraint",
                     "ComponentFullName": "UnityEngine.Animations.PositionConstraint, UnityEngine",
@@ -115,7 +115,7 @@
                 "また VRChat アバターにおいて殆どの GPU 負荷を発生させるのはこれらともなる。",
                 "by Reina_Sakiria"
             ],
-            "ChiledElements": [
+            "ChildElements": [
                 {
                     "Name": "SkinnedMeshRenderer",
                     "ComponentFullName": "UnityEngine.SkinnedMeshRenderer, UnityEngine",
@@ -144,7 +144,7 @@
                         "また VRChat のワールドでは変形をすることのほうが珍しいことも多いのでこっちが使われていることも多いかもしれない。",
                         "by Reina_Sakiria"
                     ],
-                    "ChiledElements": [
+                    "ChildElements": [
                         {
                             "Name": "MeshFilter",
                             "ComponentFullName": "UnityEngine.MeshFilter, UnityEngine",
@@ -170,7 +170,7 @@
                         "あくまで、描画をしているのは別のコンポーネントである ParticleSystemRenderer であり、インスペクター上に表示はされないが、スクリプトなどからアクセスするとその存在を確認することが可能になる。",
                         "by Reina_Sakiria"
                     ],
-                    "ChiledElements": [
+                    "ChildElements": [
                         {
                             "Name": "ParticleSystemRenderer",
                             "ComponentFullName": "UnityEngine.ParticleSystemRenderer,-UnityEngine",
@@ -219,7 +219,7 @@
                 "VRChat Avatar においても、これらは使用可能で、うまく扱わないとかなりの じゃじゃ馬 だが扱えれば、物理的な挙動を表現することが可能になる。",
                 "by Reina_Sakiria"
             ],
-            "ChiledElements": [
+            "ChildElements": [
                 {
                     "Name": "Rigidbody",
                     "ComponentFullName": "UnityEngine.Rigidbody, UnityEngine",
@@ -241,7 +241,7 @@
                         "VRChat においては、コライダージャンプと呼ばれる技術の核であり、それがコライダージャンプ以外にまともに使用されている例を見ることは少ないだろう。",
                         "by Reina_Sakiria"
                     ],
-                    "ChiledElements": [
+                    "ChildElements": [
                         {
                             "Name": "BoxCollider",
                             "ComponentFullName": "UnityEngine.BoxCollider, UnityEngine",
@@ -302,7 +302,7 @@
                         "これは複数の Rigidbody を持った存在同士を相互に連携させ、くっつけたり、ヒンジのような表現を行ったりできるようになるようだ。",
                         "by Reina_Sakiria"
                     ],
-                    "ChiledElements": [
+                    "ChildElements": [
                         {
                             "Name": "FixedJoint",
                             "ComponentFullName": "UnityEngine.FixedJoint, UnityEngine",

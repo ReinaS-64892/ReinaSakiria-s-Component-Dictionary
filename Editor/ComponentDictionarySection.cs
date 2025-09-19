@@ -34,11 +34,11 @@ namespace net.rs64.ReinaSakiriaSComponentDictonary
     [Serializable]
     internal class NestComponentDictionaryElement : ComponentDictionaryElement
     {
-        public ComponentDictionaryElement[] ChiledElements = new ComponentDictionaryElement[0];
+        public ComponentDictionaryElement[] ChildElements = new ComponentDictionaryElement[0];
     }
     [Serializable]
     internal class MoreNestComponentDictionaryElement : ComponentDictionaryElement
     {
-        public NestComponentDictionaryElement[] ChiledElements = new NestComponentDictionaryElement[0];
+        public NestComponentDictionaryElement[] ChildElements = new NestComponentDictionaryElement[0];
     }
 }
