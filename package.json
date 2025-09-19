@@ -2,6 +2,7 @@
   "name": "net.rs64.reina-sakiria-s-component-dictionary",
   "displayName": "ReinaSakiria's ComponentDictonary",
   "version": "0.0.0",
+  "license": "MIT",
   "unity": "2022.3",
   "description": "Reina_Sakiria による Reina_Sakiria のための Component の辞書",
   "vpmDependencies": {},
