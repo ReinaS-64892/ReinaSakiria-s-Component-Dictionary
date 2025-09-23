@@ -1,0 +1,145 @@
+{
+    "Name": "VRChat SDK Avatar",
+    "SectionOrder": 99,
+    "Description": [
+        "VRChat におけるアバター構築において核となる存在。",
+        "",
+        "これがなければ VRChat にアバターをアップロードすることはできない。(一部アバターメイカー系のサービスなどの例外あり)",
+        "AvatarDescriptor を始めとして、アバターを定義するものから、 VRChat 固有の機能となるコンポーネントまで様々が存在します。",
+        "by Reina_Sakiria"
+    ],
+    "DictionaryElements": [
+        {
+            "Name": "AvatarDescriptor",
+            "ComponentFullName": "VRC.SDK3.Avatars.Components.VRCAvatarDescriptor, VRCSDK3A",
+            "Description": [
+                "VRChat における アバター を定義するもの。",
+                "",
+                "VRChat におけるアバターというのはこれが定義している。これがなければ VRChat のアバターではない。",
+                "アバターをゼロからセットアップする時、VRChat 向けれであれば、多くの場合最初につけるコンポーネントなのではないだろうか？",
+                "ここには、VRChat Avatar の FX レイヤーを始めとしたアニメーションコントローラの指定箇所やビューポイント、リップシンクや目・まばたきの設定、他にも Expressions や 3点 FTB 時用の設定(現在だと FBT の設定は VRChat 側で選べるのでいじらないほうが良い) などがある。",
+                "あと、アバターに標準で付与される Contact の調整もここにあるようだ。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "PipelineManager",
+            "ComponentFullName": "VRC.Core.PipelineManager, VRCCore-Editor",
+            "Description": [
+                "VRChat Avatar において、アバターの ID である BlueprintID を示すもの。",
+                "",
+                "アバターをアップロードする時、このコンポーネントが保有している BlueprintID に対してアップロードがなされ、空だった場合新しく割り振らます。",
+                "新規として、別のアバターとしてアップロードしたいときは、「Detach (Optional)」のボタンを押すことで、コンポーネントが保有している ID を消すことができる。(VRChat のサーバー上から消えるわけではない。)",
+                "この BlueprintID というは、アバター 一つ一つを識別するもの、これが同じであれば、それらは同じアバターに向けてアップロードされる。",
+                "別プラットフォーム向け(いわゆる Android, Mobile, Quest 対応などの)アバターをアップロードするときにここの ID を共有することがあるだろう。",
+                "ちなみに、AvatarDescriptor を付与した時、自動的にくっついてくるので手動で追加することはないんじゃないだろうか。",
+                "by Reina_Sakiria"
+            ]
+        },
+        {
+            "Name": "PhysBone",
+            "ComponentFullName": "VRC.SDK3.Dynamics.PhysBone.Components.VRCPhysBone, VRC.SDK3.Dynamics.PhysBone",
+            "Description": [
+                "指定したトランスフォームとその子たちを鎖や紐などのように、ダイナミックに揺れさせることができる",
+                "",
+                "VRChat でいい感じに物理っぽく揺れているものは基本的にこれであると考えても良いかも。",
+                "結構様々な黒魔術の媒体になったり、特殊なギミックの土台であったりすることもしばしば。",
+                "通常、髪の毛や紐、鎖のような、複数個所で曲がるような物(全体的に曲がるような類も含め)を表現することに使われる。",
+                "Android対応のときには個数のハードリミットが強いが削るのが結構難しく、悩みの種にもなりがち。",
+                "Contact の方と合わせ、 Avatar Dynamics とも呼ばれ、アバターの表現可能な力を大幅に広げた存在でもあり、リリースされた時は、とても長い夏も終わりを告げたのかもしれない。",
+                "by Reina_Sakiria"
+            ],
+            "ChildElements": [
+                {
+                    "Name": "PhysBoneCollider",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.PhysBone.Components.VRCPhysBoneCollider, VRC.SDK3.Dynamics.PhysBone",
+                    "Description": [
+                        "PhysBone が衝突できる判定を定義するもの。",
+                        "",
+                        "形状は複数存在し、 (DynamicBone 時代との互換性のためでもあるようだが) コライダーの外側が衝突判定となる Inside Bounds 機能も存在する。",
+                        "どうやら、PhysBone の Radius が 0 の場合一部のコライダーには当たらなくなったり、少し奇妙な挙動もする物もあるようで、コライダーと衝突したい時は最低限 Radius が必要なようだ。",
+                        "by Reina_Sakiria"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Contact",
+            "Description": [
+                "衝突判定となる物、衝突判定を受け取りパラメーターとしてアニメーターに伝える物。",
+                "",
+                "Avatar Dynamics の ゆれものじゃない方。",
+                "Contact Sender と Contact Receiver の2つがペアで、同一の Tag をもつ Sender と Receiver が衝突した時、Receiver の設定を基にアニメーターのパラメーターとしてその情報を伝える。",
+                "形状は2つ存在し、球体とカプセルの2種。カプセルはコンストレイントと合わせて特殊なトリックにも使えるらしい ... ?",
+                "どうやら 5m までのサイズ制限があるようで、安易に最大サイズを使うと AvatarScaling して大きくなったときに、その制限に引っかかり相対的にサイズが意図せず小さくなってしまうことがあるから注意。",
+                "by Reina_Sakiria"
+            ],
+            "ChildElements": [
+                {
+                    "Name": "ContactSender",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Contact.Components.VRCContactSender, VRC.SDK3.Dynamics.Contact",
+                    "Description": [
+                        "Contact の衝突判定、Receiver に衝突できる物。",
+                        "",
+                        "Collision Tags にある Tag が一致した Tag を持つ Receiver と衝突でき Receiver に影響を与えることができる。",
+                        "また Humanoid のアバターであれば、頭や胴体、手などに標準で Sender が付与される。",
+                        "by Reina_Sakiria"
+                    ]
+                },
+                {
+                    "Name": "ContactReceiver",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Contact.Components.VRCContactReceiver, VRC.SDK3.Dynamics.Contact",
+                    "Description": [
+                        "Contact の衝突判定を受け取る方。Sender と衝突した時、設定を基にアニメーターのパラメーターに伝えることができる。",
+                        "",
+                        "Sender が一つでも衝突している間、パラメーターが有効になる物。Sender が指定値以上の速度で衝突した時(1フレーム)だけ有効になる物。衝突している一番近い Sender がどれだけ内側に近づいているかをパラメーターに渡す物など、これらが存在する。",
+                        "Collision Tags にある Tag が一致した Tag を持つ Sender の衝突に反応できる。 Tag の名前それ自体は VRChat 公式が一部は標準のものを定義しているようで、簡単に選択できる。また、 Tag はただの文字列、共通的に扱うために、人の体以外の Tag の文字列を定義し、幅広く標準的な文字列を列挙しているサイトもあるらしい ... ?",
+                        "by Reina_Sakiria"
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "VRChatConstraint",
+            "Description": [
+                "VRChat によって再実装された Constraint、少し追加機能があるようだ。",
+                "",
+                "Unity 標準の Constraint がパフォーマンス的に微妙と言った都合によって、VRChat によって再実装された物になる。概ね使い方は変わらない。",
+                "VRChat Constraint と Unity Constraint の違い、それについて Reina_Sakiria はあまり詳しくない、なので知ってる範囲で少しだけ書いておこうと思う。",
+                "通常 Constraint は付与した GameObject の Transform を対象とし動作するが、その対象を変えることができるようだ。",
+                "ほかにも、ローカル空間で動く物(わかんないけど特殊なことに使えそう ...)やその場に固定される機能もあるようだ。ちなみにこのワールド固定機能は 旧来の方法とは挙動が違って、ワールドの原点が規準になる旧来方式(WorldConstraint)と「その場」に留まれるこの機能は似ていても性質が違うよう。",
+                "",
+                "... ? ついでに VRCConstraint と パフォーマンスランクのことについて書いておきましょう。",
+                "Constraint というのは トランスフォームに影響するわけですが ... トランスフォームの親が動くと子は影響を必ず受けるので、正しく動かすなら親から順番に Constraint を計算する必要があるわけです。",
+                "それはつまり、Constraint を持つトランスフォームにの親に Constraint があった時、その2つは同時に処理できなくなり、並列処理が阻害されるわけなので、これが Constraint Depth として評価されるそう。(とはいえこれを超過してランクが悪くなるケースはあまり見ないのではないかとも思います。)",
+                "by Reina_Sakiria"
+            ],
+            "ChildElements": [
+                {
+                    "Name": "PositionConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCPositionConstraint, VRC.SDK3.Dynamics.Constraint"
+                },
+                {
+                    "Name": "RotationConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCRotationConstraint, VRC.SDK3.Dynamics.Constraint"
+                },
+                {
+                    "Name": "ParentConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCParentConstraint, VRC.SDK3.Dynamics.Constraint"
+                },
+                {
+                    "Name": "ScaleConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCScaleConstraint, VRC.SDK3.Dynamics.Constraint"
+                },
+                {
+                    "Name": "AimConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCAimConstraint, VRC.SDK3.Dynamics.Constraint"
+                },
+                {
+                    "Name": "LookAtConstraint",
+                    "ComponentFullName": "VRC.SDK3.Dynamics.Constraint.Components.VRCLookAtConstraint, VRC.SDK3.Dynamics.Constraint"
+                }
+            ]
+        }
+    ]
+}
