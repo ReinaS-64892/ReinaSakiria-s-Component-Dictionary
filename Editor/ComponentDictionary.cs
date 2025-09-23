@@ -33,7 +33,7 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
             {
                 dictionaryRoot.hierarchy.Clear();
                 foldouts.Clear();
-                GenereateDictionary(dictionaryRoot, foldouts);
+                GenerateDictionary(dictionaryRoot, foldouts);
             };
             var header = new VisualElement();
             header.style.flexDirection = FlexDirection.Row;
@@ -41,9 +41,9 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
             var reloadButton = new Button(genDict) { text = "辞書を再読み込み" };
             reloadButton.style.flexGrow = 1f;
             header.hierarchy.Add(reloadButton);
-            var foldOutContolle = new Button(() => { foreach (var f in foldouts) { f.value = false; } }) { text = "辞書をすべて畳む" };
-            foldOutContolle.style.flexGrow = 1f;
-            header.hierarchy.Add(foldOutContolle);
+            var foldOutController = new Button(() => { foreach (var f in foldouts) { f.value = false; } }) { text = "辞書をすべて畳む" };
+            foldOutController.style.flexGrow = 1f;
+            header.hierarchy.Add(foldOutController);
 
             scrollBody.hierarchy.Add(header);
 
@@ -52,16 +52,17 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
             genDict();
         }
 
-        private void GenereateDictionary(VisualElement root, List<Foldout> foldouts)
+        private void GenerateDictionary(VisualElement root, List<Foldout> foldouts)
         {
             var dictionaryRoot = AssetDatabase.GUIDToAssetPath(ComponentDictionaryDirectoryGUID);
 
             var sections = Directory.EnumerateFiles(dictionaryRoot, "*.json")
                                 .Select(File.ReadAllText)
-                                .Select(JsonUtility.FromJson<ComponentDictionarySection>)
+                                .Select(j => { try { return JsonUtility.FromJson<ComponentDictionarySection>(j); } catch (Exception e) { Debug.LogException(e); } return null; })
+                                .OfType<ComponentDictionarySection>()
                                 .Where(s => string.IsNullOrWhiteSpace(s.Name) is false)
                                 .OrderBy(s => s.SectionOrder)
-                                .Select(s => GenereateDictionarySection(s.Name, s, foldouts))
+                                .Select(s => GenerateDictionarySection(s.Name, s, foldouts))
                                 .ToArray();
 
             foreach (var s in sections)
@@ -69,7 +70,7 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
         }
 
         const float DefaultFontSize = 12f;
-        private VisualElement GenereateDictionarySection(string path, ComponentDictionarySection dictSection, List<Foldout> foldouts)
+        private VisualElement GenerateDictionarySection(string path, ComponentDictionarySection dictSection, List<Foldout> foldouts)
         {
             var sectionRoot = new Foldout();
             sectionRoot.viewDataKey = path;
@@ -94,21 +95,21 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
             descriptionContent.hierarchy.Add(urls);
 
             if (string.IsNullOrWhiteSpace(dictSection.HomePageURL) is false)
-                urls.hierarchy.Add(CretateURLButton("ホームページ", dictSection.HomePageURL));
+                urls.hierarchy.Add(CreateURLButton("ホームページ", dictSection.HomePageURL));
 
             if (string.IsNullOrWhiteSpace(dictSection.SourceCodeURL) is false)
-                urls.hierarchy.Add(CretateURLButton("ソースコード", dictSection.SourceCodeURL));
+                urls.hierarchy.Add(CreateURLButton("ソースコード", dictSection.SourceCodeURL));
 
             descriptionContent.Add(new TextElement() { text = string.Join("\n", dictSection.Description) });
 
             foreach (var e in dictSection.DictionaryElements)
             {
-                GenereateDictionaryElement(path + $"/{e.Name}", container, e, foldouts);
+                GenerateDictionaryElement(path + $"/{e.Name}", container, e, foldouts);
             }
             return sectionRoot;
         }
 
-        private void GenereateDictionaryElement(string path, VisualElement container, ComponentDictionaryElement e, List<Foldout> foldouts)
+        private void GenerateDictionaryElement(string path, VisualElement container, ComponentDictionaryElement e, List<Foldout> foldouts)
         {
 
             var foldout = new Foldout();
@@ -166,9 +167,9 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
             foldoutContainer.hierarchy.Add(urlContainer);
 
             if (string.IsNullOrWhiteSpace(e.TutorialURL) is false)
-                urlContainer.hierarchy.Add(CretateURLButton("使い方", e.TutorialURL));
+                urlContainer.hierarchy.Add(CreateURLButton("使い方", e.TutorialURL));
             if (string.IsNullOrWhiteSpace(e.ReferenceURL) is false)
-                urlContainer.hierarchy.Add(CretateURLButton("リファレンス", e.ReferenceURL));
+                urlContainer.hierarchy.Add(CreateURLButton("リファレンス", e.ReferenceURL));
 
 
             var note = new TextElement() { text = string.Join("\n", e.Description) };
@@ -177,13 +178,13 @@ namespace net.rs64.ReinaSakiriaSComponentDictionary
 
             if (e is MoreNestComponentDictionaryElement mne)
                 foreach (var ce in mne.ChildElements)
-                    GenereateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
+                    GenerateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
             else if (e is NestComponentDictionaryElement ne)
                 foreach (var ce in ne.ChildElements)
-                    GenereateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
+                    GenerateDictionaryElement(path + $"/{ce.Name}", foldoutContainer, ce, foldouts);
         }
 
-        private static Button CretateURLButton(string buttonText, string url)
+        private static Button CreateURLButton(string buttonText, string url)
         {
             var urlButton = new Button(() => Application.OpenURL(url)) { text = buttonText };
             urlButton.style.flexGrow = 1;
